@@ -1,6 +1,45 @@
 #root {
-  max-width: 1280px;
+  /* max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  /* padding: 2rem; */
+  background-color: white;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap");
+
+.header-block {
+  background-color: white;
+  padding: 0;
   text-align: center;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgb(52, 1, 61);
+  color: white;
+}
+
+#headerTitle {
+  color: #482673;
+  font-family: "Tilt Neon", sans-serif;
+  font-weight: 4000;
+  font-size: 40px;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 0 10px;
+  background-color: #ed0b70;
+  color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: "Tilt Neon", sans-serif;
+  font-weight: 400;
+}
+
+.nav-link:hover {
+  background-color: #4cbfa6;
+}
+
+body {
+  background-color: white;
 }
