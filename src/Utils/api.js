@@ -7,3 +7,9 @@ export const fetchArticles = () => {
     .get(`${BASE_URL}/articles`)
     .then((response) => response.data.articles);
 };
+
+export const fetchArticleById = (articleId) => {
+  return fetch(`${BASE_URL}/articles/${articleId}`)
+    .then((response) => response.json())
+    .then((data) => data);
+};
