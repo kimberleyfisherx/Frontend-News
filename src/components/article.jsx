@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchArticleById } from "../Utils/api";
 import { useParams } from "react-router-dom";
+import Comments from "./Comments";
 
 export default function Article() {
   const [article, setArticle] = useState();
@@ -45,8 +46,10 @@ export default function Article() {
       <p>{formattedDate}</p>{" "}
       <div className="upvotes-comments">
         <p>Upvotes: {votes}</p>
-        <p>Comments: {comment_count}</p>
-      </div>{" "}
+        <p>
+          <Comments /> {comment_count}
+        </p>
+      </div>
     </div>
   );
 }
