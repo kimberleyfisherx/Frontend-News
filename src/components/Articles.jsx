@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
-import Article from "./article";
+import { fetchArticles } from "../Utils/api";
 
 export default function Articles() {
   const [articles, setArticles] = useState([]);
+
   useEffect(() => {
-    fetch("https://news-3fmi.onrender.com/api/articles")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setArticles(data.articles);
-      });
+    fetchArticles().then((data) => {
+      console.log(data);
+      setArticles(data);
+    });
   }, []);
 
   return (
@@ -33,10 +32,8 @@ export default function Articles() {
                   </div>
                   <div className="text-content">
                     <h2>{title}</h2>
-
-                    <p>{topic}</p>
+                    <p>Topic: {topic}</p>
                     <p>Author: {author}</p>
-
                     <div className="upvotes-comments">
                       <p>Upvotes: {votes}</p>
                       <p>Comments: {comment_count}</p>
