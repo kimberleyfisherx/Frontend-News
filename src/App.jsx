@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import Topics from "./components/Topics";
 import Users from "./components/Users";
 import Articles from "./components/Articles";
-import Article from "./components/Article";
+import Article from "./components/article";
 
 function App() {
   return (
