@@ -2,14 +2,20 @@ import axios from "axios";
 
 const BASE_URL = "https://news-3fmi.onrender.com/api";
 
+const api = axios.create({
+  baseURL: BASE_URL,
+});
+
 export const fetchArticles = () => {
-  return axios
-    .get(`${BASE_URL}/articles`)
-    .then((response) => response.data.articles);
+  return api.get("/articles").then((response) => response.data.articles);
 };
 
 export const fetchArticleById = (articleId) => {
-  return fetch(`${BASE_URL}/articles/${articleId}`)
-    .then((response) => response.json())
-    .then((data) => data);
+  return api.get(`/articles/${articleId}`).then((response) => response.data);
+};
+
+export const fetchCommentsByArticleId = (articleId) => {
+  return api
+    .get(`/articles/${articleId}/comments`)
+    .then((response) => response.data);
 };
