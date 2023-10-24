@@ -8,7 +8,6 @@ export default function Comments() {
 
   useEffect(() => {
     fetchCommentsByArticleId(id).then((data) => {
-      console.log(data.comments);
       setComments(data.comments);
     });
   }, [id]);
@@ -16,21 +15,34 @@ export default function Comments() {
   if (comments.length === 0) {
     return <div>No comments yet.</div>;
   }
-
   return (
     <div className="comments">
-      <h3>Comments</h3>
+      <h3 className="comments-title">Comments</h3>
       <ul>
-        {comments.map((comment) => (
-          <li key={comment.comment_id}>
-            <div>
-              <p>Author: {comment.author}</p>
-              <p>Body: {comment.body}</p>
-              <p>Created At: {comment.created_at}</p>
-              <p>Votes: {comment.votes}</p>
-            </div>
-          </li>
-        ))}
+        {comments.map(({ comment_id, author, body, created_at, votes }) => {
+          const createdDate = new Date(created_at);
+          const formattedDate = createdDate.toLocaleString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: true,
+          });
+
+          return (
+            <li key={comment_id}>
+              <div className="comment-card">
+                <div className="comment-author">
+                  <p>{author}:</p>
+                </div>
+                <p className="comment-body">{body}</p>
+                <p className="formatted-date">{formattedDate}</p>
+                <p>Upvotes: {votes}</p>
+              </div>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

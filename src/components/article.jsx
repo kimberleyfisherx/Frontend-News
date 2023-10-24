@@ -30,7 +30,14 @@ export default function Article() {
   } = article.article;
 
   const createdDate = new Date(created_at);
-  const formattedDate = createdDate.toLocaleString();
+  const formattedDate = createdDate.toLocaleString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  });
 
   return (
     <div className="single-article">
@@ -46,9 +53,10 @@ export default function Article() {
       <p>{formattedDate}</p>{" "}
       <div className="upvotes-comments">
         <p>Upvotes: {votes}</p>
-        <p>
-          <Comments /> {comment_count}
-        </p>
+        <p>Comments:{comment_count}</p>
+      </div>
+      <div>
+        <Comments />
       </div>
     </div>
   );
