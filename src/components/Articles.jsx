@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchArticles } from "../Utils/api";
+import { Link } from "react-router-dom";
 
 export default function Articles() {
   const [articles, setArticles] = useState([]);
@@ -12,20 +13,24 @@ export default function Articles() {
   }, []);
 
   return (
-    <>
-      <div className="card-container">
-        {articles.map(
-          ({
-            title,
-            topic,
-            author,
-            article_img_url,
-            votes,
-            article_id,
-            comment_count,
-          }) => {
-            return (
-              <div key={article_id} className="card">
+    <div className="card-container">
+      {articles.map(
+        ({
+          title,
+          topic,
+          author,
+          article_img_url,
+          votes,
+          article_id,
+          comment_count,
+        }) => {
+          return (
+            <Link
+              to={`/articles/${article_id}`}
+              key={article_id}
+              className="card-link"
+            >
+              <div className="card">
                 <div className="card-content">
                   <div className="image-container">
                     <img src={article_img_url} alt={title} />
@@ -41,10 +46,10 @@ export default function Articles() {
                   </div>
                 </div>
               </div>
-            );
-          }
-        )}
-      </div>
-    </>
+            </Link>
+          );
+        }
+      )}
+    </div>
   );
 }
