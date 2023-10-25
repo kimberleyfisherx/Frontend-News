@@ -1,33 +1,54 @@
 import React, { useEffect, useState } from "react";
-import { fetchArticleById } from "../Utils/api";
+import { fetchArticleById, patchVotes } from "../Utils/api";
 import { useParams } from "react-router-dom";
 import Comments from "./Comments";
+import Vote from "./Votes";
 
-export default function Article() {
-  const [article, setArticle] = useState();
+function Article() {
+  const [article, setArticle] = useState({});
+  const [hasVoted, setHasVoted] = useState(false);
+  const [voteDirection, setVoteDirection] = useState(0);
+  const [displayedVotes, setDisplayedVotes] = useState(0);
   const { id } = useParams();
 
   useEffect(() => {
     fetchArticleById(id).then((data) => {
-      console.log(data);
       setArticle(data);
+      const initialVotes = data.article.votes;
+      setDisplayedVotes(initialVotes);
     });
   }, [id]);
 
-  if (!article) {
+  const handleVote = (vote) => {
+    if (hasVoted && vote === voteDirection) {
+      patchVotes(id).then((data) => {
+        setArticle((updateArticle) => ({
+          ...updateArticle,
+          votes: data.votes,
+        }));
+        setHasVoted(false);
+        setVoteDirection(0);
+        setDisplayedVotes((updateVotes) => updateVotes - vote);
+      });
+    } else if (!hasVoted) {
+      patchVotes(id, vote).then((data) => {
+        setArticle((updateArticle) => ({
+          ...updateArticle,
+          votes: data.votes,
+        }));
+        setHasVoted(true);
+        setVoteDirection(vote);
+        setDisplayedVotes((updateVotes) => updateVotes + vote);
+      });
+    }
+  };
+
+  if (!article || !article.article) {
     return <div>Loading...</div>;
   }
 
-  const {
-    title,
-    topic,
-    author,
-    article_img_url,
-    votes,
-    comment_count,
-    body,
-    created_at,
-  } = article.article;
+  const { title, topic, author, article_img_url, body, created_at } =
+    article.article;
 
   const createdDate = new Date(created_at);
   const formattedDate = createdDate.toLocaleString("en-US", {
@@ -50,14 +71,20 @@ export default function Article() {
         <img src={article_img_url} alt={title} />
       </div>
       <div className="article-body">{body}</div>
-      <p>{formattedDate}</p>{" "}
-      <div className="upvotes-comments">
-        <p>Upvotes: {votes}</p>
-        <p>Comments:{comment_count}</p>
-      </div>
+      <p className="formatted-date">{formattedDate}</p>
+
+      <Vote
+        handleVote={handleVote}
+        hasVoted={hasVoted}
+        voteDirection={voteDirection}
+        displayedVotes={displayedVotes}
+      />
+
       <div>
         <Comments />
       </div>
     </div>
   );
 }
+
+export default Article;

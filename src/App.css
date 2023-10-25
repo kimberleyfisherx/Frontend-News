@@ -181,9 +181,32 @@ ul {
 .formatted-date {
   font-style: italic;
   font-size: 12px;
+  padding: 5px;
 }
 .comments-title {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   margin-left: 50px;
+}
+
+.votes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.votes button {
+  background-color: transparent;
+  height: 50px;
+  width: 50px;
+  font-size: 30px;
+  color: #482673;
+  border: 0;
+}
+
+.displayedVotes {
+  color: #ed0b70;
+
+  font-size: 30px;
+  font-family: "Tilt Neon", sans-serif;
 }
