@@ -19,3 +19,7 @@ export const fetchCommentsByArticleId = (articleId) => {
     .get(`/articles/${articleId}/comments`)
     .then((response) => response.data);
 };
+
+export const patchVotes = (article_id, num) => {
+  return api.patch(`articles/${article_id}`, { inc_votes: num });
+};
