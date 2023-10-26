@@ -4,12 +4,15 @@ import { useParams } from "react-router-dom";
 import Comments from "./Comments";
 import Vote from "./Votes";
 
+import AddCommentForm from "./AddCommentForm";
+
 function Article() {
   const [article, setArticle] = useState({});
   const [hasVoted, setHasVoted] = useState(false);
   const [voteDirection, setVoteDirection] = useState(0);
   const [displayedVotes, setDisplayedVotes] = useState(0);
-  const [alreadyVoted, setAlreadyVoted] = useState(false);
+  const [comments, setComments] = useState([]);
+
   const { id } = useParams();
 
   useEffect(() => {
@@ -19,6 +22,11 @@ function Article() {
       setDisplayedVotes(initialVotes);
     });
   }, [id]);
+
+useEffect(()=>{
+    
+})
+
 
   const handleVote = (vote) => {
     if (hasVoted && vote === voteDirection) {
@@ -85,7 +93,8 @@ function Article() {
       {hasVoted && <p id="alreadyVotedMessage">We have counted your vote.</p>}
 
       <div>
-        <Comments />
+        <Comments comments={comments} />
+        <AddCommentForm article_id={id} setComments={setComments} />
       </div>
     </div>
   );
