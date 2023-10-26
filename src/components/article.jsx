@@ -82,7 +82,7 @@ function Article() {
         voteDirection={voteDirection}
         displayedVotes={displayedVotes}
       />
-      {alreadyVoted && <p id="alreadyVotedMessage">You have already voted.</p>}
+      {hasVoted && <p id="alreadyVotedMessage">We have counted your vote.</p>}
 
       <div>
         <Comments />
