@@ -9,6 +9,7 @@ function Article() {
   const [hasVoted, setHasVoted] = useState(false);
   const [voteDirection, setVoteDirection] = useState(0);
   const [displayedVotes, setDisplayedVotes] = useState(0);
+  const [alreadyVoted, setAlreadyVoted] = useState(false);
   const { id } = useParams();
 
   useEffect(() => {
@@ -40,6 +41,8 @@ function Article() {
         setVoteDirection(vote);
         setDisplayedVotes((updateVotes) => updateVotes + vote);
       });
+    } else {
+      setAlreadyVoted(true);
     }
   };
 
@@ -79,6 +82,7 @@ function Article() {
         voteDirection={voteDirection}
         displayedVotes={displayedVotes}
       />
+      {alreadyVoted && <p id="alreadyVotedMessage">You have already voted.</p>}
 
       <div>
         <Comments />
