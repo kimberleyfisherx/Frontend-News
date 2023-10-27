@@ -298,3 +298,34 @@ h3 {
   text-decoration: none;
   color: #333;
 }
+
+.comment-form {
+  background-color: #f6ebf4;
+  border: solid 2px black;
+  padding: 5px;
+  display: inline-block;
+  margin-bottom: 1rem;
+  width: 480px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  text-align: start;
+  padding-inline-start: 20px;
+  display: block;
+  font-size: 18px;
+}
+
+.btn-submit {
+  color: white;
+  background-color: #4cbfa6;
+  border-radius: 10px;
+  font-size: 20px;
+
+  display: flex;
+}
+
+textarea {
+  background-color: #f5edf3;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 16px;
+}
