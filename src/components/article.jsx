@@ -23,10 +23,7 @@ function Article() {
     });
   }, [id]);
 
-useEffect(()=>{
-    
-})
-
+  useEffect(() => {});
 
   const handleVote = (vote) => {
     if (hasVoted && vote === voteDirection) {
@@ -93,8 +90,8 @@ useEffect(()=>{
       {hasVoted && <p id="alreadyVotedMessage">We have counted your vote.</p>}
 
       <div>
-        <Comments comments={comments} />
         <AddCommentForm article_id={id} setComments={setComments} />
+        <Comments comments={comments} />
       </div>
     </div>
   );

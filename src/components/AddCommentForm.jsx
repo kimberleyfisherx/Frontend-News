@@ -31,23 +31,25 @@ export default function AddCommentForm({ article_id, setComments }) {
   }
 
   return (
-    <div>
-      <p>AddCommentForm</p>
-      <form onSubmit={handleForm}>
-        <textarea
-          placeholder="add a comment"
-          type="text"
-          id="comment-body"
-          rows="4"
-          cols="50"
-          value={commentbody}
-          onChange={(e) => setcommentbody(e.target.value)}
-          required
-        />
-        <button type="submit" className="btn-green">
-          Post
-        </button>
-      </form>
-    </div>
+    <ul>
+      <div className="comment-form">
+        <p>Comment below:</p>
+        <form onSubmit={handleForm}>
+          <textarea
+            placeholder="Add new comment..."
+            type="text"
+            id="comment-body"
+            rows="4"
+            cols="50"
+            value={commentbody}
+            onChange={(e) => setcommentbody(e.target.value)}
+            required
+          />
+          <button type="submit" className="btn-submit">
+            Post
+          </button>
+        </form>
+      </div>
+    </ul>
   );
 }
