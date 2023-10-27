@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TopicCard from "./TopicCard";
 import { getTopics } from "../Utils/api";
-import TopicArticles from "./TopicArticles"; // Import the TopicArticles component
+import TopicArticles from "./TopicArticles";
 
 const Topics = () => {
   const [topics, setTopics] = useState([]);
