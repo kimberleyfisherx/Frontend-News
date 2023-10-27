@@ -23,3 +23,10 @@ export const fetchCommentsByArticleId = (articleId) => {
 export const patchVotes = (article_id, num) => {
   return api.patch(`articles/${article_id}`, { inc_votes: num });
 };
+
+export const getTopics =()=> {
+  
+    return api.get("topics").then((result) => {
+      return result.data;
+    });
+  }
