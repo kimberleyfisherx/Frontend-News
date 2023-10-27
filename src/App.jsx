@@ -18,6 +18,7 @@ function App() {
           <Route path="/articles" element={<Articles />} />
           <Route path="/users" element={<Users />} />
           <Route path="/articles/:id" element={<Article />} />
+          
         </Routes>
       </main>
     </>
